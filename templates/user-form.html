@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block title %}
+quedrop
+{% endblock %}
+{% block content %}
+    {%if form %}
+        <span>Hello there, {{ form.get_title() }}!</span>
+        <span>QUESTIONS: {{ form.get_questions()[0].get_text() }}</span>
+    {% else %}
+        <span> dunno </span>
+    {% endif %}
+    <p>User form page for the Visual Studio Code Flask tutorial.</p>
+{% endblock %}
