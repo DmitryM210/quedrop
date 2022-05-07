@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+quedrop
+{% endblock %}
+
+{% block content %}
+<form id="editable-form">
+    <input name="title" type="text" placeholder="Form title ..." required/>
+    <input name="description" type="text" placeholder="Form description ..."/>
+    <div id="question-section">
+        <!-- <div class="edit-question">
+            <input type="text" placeholder="Question ..." required/>
+            <input type="text" placeholder="Answer ..." readonly/>
+        </div> -->
+    </div>
+    <button type="button" onclick="appendNewQuestion()">Add question</button>
+    <input type="submit" onclick="createForm()" value="Create form"/>
+</form>
+{% endblock %}

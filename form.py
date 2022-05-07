@@ -19,6 +19,7 @@ class Form:
         self.title = title
         self.description = description
         self.questions = questions
+        self.questions_count = len(questions)
 
     def get_title(self):
         return self.title
