@@ -22,6 +22,7 @@
             </footer>
         </div>
 
-        <script src="{{url_for('static', filename='body-script.js')}}"></script>
+        {% block body_scripts %}
+        {% endblock %}
     </body>
 </html>

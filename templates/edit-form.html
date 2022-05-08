@@ -5,9 +5,12 @@ quedrop
 {% endblock %}
 
 {% block content %}
-<form id="editable-form">
-    <input name="title" type="text" placeholder="Form title ..." required/>
-    <input name="description" type="text" placeholder="Form description ..."/>
+<div id="message-container">
+
+</div>
+<form id="editable-form" action="post" method="POST">
+    <input name="title" type="text" placeholder="Title" required/>
+    <input name="description" type="text" placeholder="Description"/>
     <div id="question-section">
         <!-- <div class="edit-question">
             <input type="text" placeholder="Question ..." required/>
@@ -15,6 +18,10 @@ quedrop
         </div> -->
     </div>
     <button type="button" onclick="appendNewQuestion()">Add question</button>
-    <input type="submit" onclick="createForm()" value="Create form"/>
+    <input type="submit" value="Create form"/>
 </form>
+{% endblock %}
+
+{% block body_scripts %}
+<script src="{{url_for('static', filename='body-script.js')}}"></script>
 {% endblock %}
