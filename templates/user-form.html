@@ -4,10 +4,39 @@ quedrop
 {% endblock %}
 {% block content %}
     {%if form %}
-        <span>Hello there, {{ form.get_title() }}!</span>
-        <span>QUESTIONS: {{ form.get_questions()[0].get_text() }}</span>
+        <div class="start">
+			<h1> TEST 1 </h1>
+			<h2> QUESTIONS: </h2>
+		</div>
+		<div class = q_a> 
+	        <div class = "question">
+				<p> QUESTION 1</p>
+				<h3> Кто основал компанию Facebook? </h3>
+			</div>
+			<div class ="answer">
+				<span> YOUR ANSWER: <input type="text" name="username"> </span>
+			</div>
+		</div>
+		<div class = q_a> 
+			<div class = "question">
+				<p> QUESTION 2</p>
+				<h3> Назовите самое быстрое животное в мире. </h3>
+			</div>
+			<div class ="answer">
+				<span> YOUR ANSWER: <input type="text" name="username"> </span>
+			</div>
+		</div>
+		<div class = q_a> 
+			<div class = "question">
+				<p> QUESTION 3</p>
+				<h3> Опишите каким образом устроен stack.  </h3>
+			</div>
+			<div class ="answer">
+			    <span> YOUR ANSWER: <input type="text" name="username"> </span>
+			</div>
+		</div>
     {% else %}
         <span> dunno </span>
     {% endif %}
-    <p>User form page for the Visual Studio Code Flask tutorial.</p>
+	<p>User form page for the Visual Studio Code Flask tutorial.</p>
 {% endblock %}
