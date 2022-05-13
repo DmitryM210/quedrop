@@ -5,38 +5,23 @@ quedrop
 {% block content %}
     {%if form %}
         <div class="start">
-			<h1> TEST 1 </h1>
+			<h1> TEST: {{ form.get_title() }} </h1>
 			<h2> QUESTIONS: </h2>
 		</div>
-		<div class = q_a> 
-	        <div class = "question">
-				<p> QUESTION 1</p>
-				<h3> Кто основал компанию Facebook? </h3>
+		{% for index in range(form.questions_count) %}
+			<div class = q_a> 
+				<div class = "question">
+					<p> QUESTION {{ index+1 }} </p>
+					<h3> {{ form.get_questions()[index].get_text() }} </h3>
+				</div>
+				<div class ="answer">
+					<span> YOUR ANSWER: <input type="text" name="username"> </span>
+				</div>
 			</div>
-			<div class ="answer">
-				<span> YOUR ANSWER: <input type="text" name="username"> </span>
-			</div>
-		</div>
-		<div class = q_a> 
-			<div class = "question">
-				<p> QUESTION 2</p>
-				<h3> Назовите самое быстрое животное в мире. </h3>
-			</div>
-			<div class ="answer">
-				<span> YOUR ANSWER: <input type="text" name="username"> </span>
-			</div>
-		</div>
-		<div class = q_a> 
-			<div class = "question">
-				<p> QUESTION 3</p>
-				<h3> Опишите каким образом устроен stack.  </h3>
-			</div>
-			<div class ="answer">
-			    <span> YOUR ANSWER: <input type="text" name="username"> </span>
-			</div>
-		</div>
+		{% endfor %}
     {% else %}
         <span> dunno </span>
     {% endif %}
+	<button class = "button"> <h3>DROP YOUR ANSWERS<h3> </button>
 	<p>User form page for the Visual Studio Code Flask tutorial.</p>
 {% endblock %}

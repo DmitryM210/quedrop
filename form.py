@@ -31,6 +31,9 @@ class Form:
 
     def get_questions(self):
         return self.questions
+        
+    def get_questions_count(self):
+        return self.questions_count
 
 def parse_form(json_data):
     data = json.loads(json_data)
