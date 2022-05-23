@@ -31,10 +31,10 @@ function createRemoveQuestionButton(containerToRemove) {
     return removeButton;
 }
 
-function createLink(guid) {
+function createLink(text, target, guid) {
     var link = document.createElement("a");
-    link.href = window.location + "../user-form/" + guid;
-    link.appendChild(document.createTextNode("Created form"))
+    link.href = window.location + "../" + target + "/" + guid;
+    link.appendChild(document.createTextNode(text))
     return link;
 }
 
@@ -60,12 +60,17 @@ function emplaceNoQuestionsMessage() {
     messageContainer.replaceChildren(messageTextNode);
 }
 
-function emplaceLinkToCreatedForm(guid) {
+function emplaceLinkToCreatedForm(publicGuid, privateGuid) {
     var messageContainer = document.getElementById("message-container");
     var message = "You have successfully created a new form: ";
     var messageTextNode = document.createTextNode(message);
-    messageContainer.replaceChildren(
-        messageTextNode, createLink(guid));
+    var linkContainer = document.createElement("div");
+    linkContainer.appendChild(createLink(
+        "Created form", "user-form", publicGuid));
+    linkContainer.appendChild(createWhitespace())
+    linkContainer.appendChild(createLink(
+        "Answers list", "form-list", privateGuid));
+    messageContainer.replaceChildren(messageTextNode, linkContainer);
 }
 
 function convertFormDataToJson(form) {
@@ -102,7 +107,8 @@ function submitForm(event) {
         (error) => console.error(error)
     )
     .then(
-        (data) => emplaceLinkToCreatedForm(data.guid)
+        (data) => emplaceLinkToCreatedForm(
+            data.public_guid, data.private_guid)
     );
 
     console.log('Sending request ...');

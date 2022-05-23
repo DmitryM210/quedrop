@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block title %}
+quedrop
+{% endblock %}
+{% block content %}
+    {%if answers %}
+        <div class="start">
+			<h1> TEST: {{ answers[0].title }} </h1>
+		</div>
+		<table>
+            <tr>
+                <th>Student</th>
+                <th>Answers</th>
+                <th>Checking</th>
+                <th>Total</th>
+            </tr>
+            {% for index in range(answers|length) %}
+                <tr>
+                    <td>Student {{index+1}}</td>
+                    <td><a href="{{url_for('user_answer', private_guid=private_guid, index=index)}}">Check answers</a></td>
+                    <td>Checking_{{index}}</td>
+                    <td>Total_{{index}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <span> dunno </span>
+    {% endif %}
+{% endblock %}

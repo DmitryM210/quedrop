@@ -96,3 +96,11 @@
 	left: 50%;
 	margin-left: -350px;
 }
+
+table {
+    width: 100%
+}
+
+table, th, td {
+    border: 1px solid black;
+}

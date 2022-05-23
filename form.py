@@ -1,20 +1,9 @@
 import json
 
 class Question:
-    def __init__(self, text):
+    def __init__(self, text, answer=None):
         self.text = text
-        self.answer = None
-
-    def get_text(self):
-        return self.text
-
-    def set_answer(self):
-        return self.answer
-
-    def set_answer(self, answer_text):
-        if self.answer != None:
-            raise NotImplementedError('question cannot be answered more than once')
-        self.answer = answer_text
+        self.answer = answer
 
 class Form:
     def __init__(self, title, description, questions):
@@ -22,18 +11,6 @@ class Form:
         self.description = description
         self.questions = questions
         self.questions_count = len(questions)
-
-    def get_title(self):
-        return self.title
-
-    def get_description(self):
-        return self.description
-
-    def get_questions(self):
-        return self.questions
-        
-    def get_questions_count(self):
-        return self.questions_count
 
 def parse_form(json_data):
     data = json.loads(json_data)
@@ -47,4 +24,20 @@ def parse_form(json_data):
             question = Question(data[key])
             questions.append(question)
     
+    return Form(title, description, questions)
+
+def parse_answer(json_data):
+    data = json.loads(json_data)
+    
+    title = data['title']
+    description = data['description']
+    questions = []
+
+    for key in data:
+        if key.startswith("question"):
+            question_text = data[key]["question"]
+            answer_text = data[key]["answer"]
+            question = Question(question_text, answer_text)
+            questions.append(question)
+
     return Form(title, description, questions)
