@@ -26,6 +26,8 @@ def user_form(public_guid = None):
 @app.route("/user-answer/<private_guid>/<index>")
 def user_answer(private_guid, index):
     answer = answers_dict[private_guid][int(index)]
+    if (answer.status == "Unchecked"):
+        answer.start_checking()
     return render_template("user-answer.html", answer=answer)
 
 @app.route("/form-list/<private_guid>")
@@ -44,7 +46,6 @@ def post_form():
     private_guid = str(uuid.uuid4())
     public_guid = str(uuid.uuid4())
     guids[public_guid] = private_guid
-    guids[private_guid] = public_guid # todo: mb remove?
     forms[public_guid] = form
     answers_dict[private_guid] = []
 
@@ -63,3 +64,13 @@ def post_answer():
     
     answers_dict[private_guid].append(answer)
     return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
+
+@app.route('/user-answer/<private_guid>/<index>/post', methods=['GET', 'POST'])
+def post_check(private_guid, index):
+    content = request.get_json()
+    answer = answers_dict[private_guid][int(index)]
+    if (answer.status == "Checking"):
+        check_answers(answer, json.dumps(content))
+        return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
+    else:
+        return json.dumps({'success':False, 'message':'Already checked'}), 409, {'ContentType':'application/json'}

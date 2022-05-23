@@ -1,5 +1,9 @@
 var questionCount = 0;
 
+function hasDuplicates(array) {
+    return (new Set(array)).size !== array.length;
+}
+
 function createWhitespace() {
     return document.createTextNode("\u00A0");
 }
@@ -53,9 +57,8 @@ function appendNewQuestion() {
     questionSection.appendChild(questionContainer);
 }
 
-function emplaceNoQuestionsMessage() {
+function showMessage(message) {
     var messageContainer = document.getElementById("message-container");
-    var message = "You cannot create a form without questions.";
     var messageTextNode = document.createTextNode(message);
     messageContainer.replaceChildren(messageTextNode);
 }
@@ -76,9 +79,15 @@ function emplaceLinkToCreatedForm(publicGuid, privateGuid) {
 function convertFormDataToJson(form) {
     var formData = new FormData(form);
     var obj = {};
-    formData.forEach((value, key) => obj[key] = value);
+    var questions = [];
+    formData.forEach((value, key) => {
+        if (key.startsWith("question"))
+            questions.push(value);
+        obj[key] = value
+    });
     return {
-        hasQuestions: Object.keys(obj).length > 2,
+        hasQuestions: questions.length > 0,
+        hasDuplicates: hasDuplicates(questions),
         json: JSON.stringify(obj), 
     };
 }
@@ -88,7 +97,11 @@ function submitForm(event) {
 
     var result = convertFormDataToJson(event.target); 
     if (!result.hasQuestions) {
-        emplaceNoQuestionsMessage();
+        showMessage("You cannot create a form without questions.");
+        return;
+    }
+    if (result.hasDuplicates) {
+        showMessage("There cannot be any identical questions.");
         return;
     }
 

@@ -18,8 +18,14 @@ quedrop
                 <tr>
                     <td>Student {{index+1}}</td>
                     <td><a href="{{url_for('user_answer', private_guid=private_guid, index=index)}}">Check answers</a></td>
-                    <td>Checking_{{index}}</td>
-                    <td>Total_{{index}}</td>
+                    <td>{{ answers[index].status }}</td>
+                    <td>
+                    {% if answers[index].status == 'Checked' %}
+                        {{ answers[index].correct_question_count }} / {{ answers[index].questions_count }}
+                    {% else %}
+                        --
+                    {% endif %}
+                    </td>
                 </tr>
             {% endfor %}
         </table>
