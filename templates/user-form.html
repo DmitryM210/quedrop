@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block title %}
+quedrop
+{% endblock %}
+{% block content %}
+    {%if form %}
+        <div class="start">
+			<h1> TEST: {{ form.get_title() }} </h1>
+			<h2> QUESTIONS: </h2>
+		</div>
+		{% for index in range(form.questions_count) %}
+			<div class = q_a> 
+				<div class = "question">
+					<p> QUESTION {{ index+1 }} </p>
+					<h3> {{ form.get_questions()[index].get_text() }} </h3>
+				</div>
+				<div class ="answer">
+					<span> YOUR ANSWER: <input type="text" name="username"> </span>
+				</div>
+			</div>
+		{% endfor %}
+		<button class = "button"> <h3>DROP YOUR ANSWERS<h3> </button>
+    {% else %}
+        <span> dunno </span>
+    {% endif %}
+	
+	<p>User form page for the Visual Studio Code Flask tutorial.</p>
+{% endblock %}

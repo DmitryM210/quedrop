@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css')}}" />
+    </head>
+
+    <body>
+        <div class="navbar-in">
+            <a href="{{ url_for('home') }}" class="navbar-brand">Quedrop</a>
+            <a href="{{ url_for('edit_form') }}" class="navbar-item">Edit Form</a>
+            <a href="{{ url_for('user_form') }}" class="navbar-item">User Form</a>
+        </div>
+
+        <div class="body-content">
+            {% block content %}
+            {% endblock %}
+            <hr/>
+            <footer>
+                <p>© 2022</p>
+            </footer>
+        </div>
+
+        {% block body_scripts %}
+        {% endblock %}
+    </body>
+</html>

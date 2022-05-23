@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+quedrop
+{% endblock %}
+
+{% block content %}
+<div id="message-container">
+
+</div>
+<form id="editable-form" action="post" method="POST">
+    <input name="title" type="text" placeholder="Title" required/>
+    <input name="description" type="text" placeholder="Description"/>
+    <div id="question-section">
+        <!-- <div class="edit-question">
+            <input type="text" placeholder="Question ..." required/>
+            <input type="text" placeholder="Answer ..." readonly/>
+        </div> -->
+    </div>
+    <button type="button" onclick="appendNewQuestion()">Add question</button>
+    <input type="submit" value="Create form"/>
+</form>
+{% endblock %}
+
+{% block body_scripts %}
+<script src="{{url_for('static', filename='body-script.js')}}"></script>
+{% endblock %}
