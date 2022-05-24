@@ -3,5 +3,13 @@
 quedrop
 {% endblock %}
 {% block content %}
-<p>Home page for the Visual Studio Code Flask tutorial.</p>
+<div class = "beauty_board">
+	<a href="{{ url_for('home') }} "> <h1> Welcome to the Quedrop </h1> </a>
+	<h2> With the help of this service, you can create polls or answer already created ones. Ideal for classroom use. </h2>
+<div class="container">
+	<a href = "{{ url_for('edit_form') }}" class = "button" >  <div class = "button-text"><p>CREATE</p> <p>FORM</p></div></a>
+	<a href = "{{ url_for('user_form') }}" class = "button" >  <div class = "button-text"><p>START</p> <p>TO</p> <p>ANSWER</p> </div></a>
+</div>
+<input type = "text" placeholder = "Enter your uuid" class = "input_uuid"> 
+</div>
 {% endblock %}
