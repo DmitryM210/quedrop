@@ -1,5 +1,9 @@
 var questionCount = 0;
 
+function hasDuplicates(array) {
+    return (new Set(array)).size !== array.length;
+}
+
 function createWhitespace() {
     return document.createTextNode("\u00A0");
 }
@@ -31,10 +35,10 @@ function createRemoveQuestionButton(containerToRemove) {
     return removeButton;
 }
 
-function createLink(guid) {
+function createLink(text, target, guid) {
     var link = document.createElement("a");
-    link.href = window.location + "../user-form/" + guid;
-    link.appendChild(document.createTextNode("Created form"))
+    link.href = window.location + "../" + target + "/" + guid;
+    link.appendChild(document.createTextNode(text))
     return link;
 }
 
@@ -43,9 +47,10 @@ function appendNewQuestion() {
 
     var questionContainer = document.createElement("div");
     questionContainer.classList.add("edit-question");
+    questionContainer.classList.add("question_answer");
     questionContainer.appendChild(createQuestionField());
-    questionContainer.appendChild(createWhitespace());
-    questionContainer.appendChild(createAnswerField());
+    //questionContainer.appendChild(createWhitespace());
+    //questionContainer.appendChild(createAnswerField());
     questionContainer.appendChild(createWhitespace());
     questionContainer.appendChild(createRemoveQuestionButton(questionContainer));
     questionCount++;
@@ -53,27 +58,38 @@ function appendNewQuestion() {
     questionSection.appendChild(questionContainer);
 }
 
-function emplaceNoQuestionsMessage() {
+function showMessage(message) {
     var messageContainer = document.getElementById("message-container");
-    var message = "You cannot create a form without questions.";
+	messageContainer.removeAttribute("style");
     var messageTextNode = document.createTextNode(message);
     messageContainer.replaceChildren(messageTextNode);
 }
 
-function emplaceLinkToCreatedForm(guid) {
+function emplaceLinkToCreatedForm(publicGuid, privateGuid) {
     var messageContainer = document.getElementById("message-container");
     var message = "You have successfully created a new form: ";
     var messageTextNode = document.createTextNode(message);
-    messageContainer.replaceChildren(
-        messageTextNode, createLink(guid));
+    var linkContainer = document.createElement("div");
+    linkContainer.appendChild(createLink(
+        "Created form", "user-form", publicGuid));
+    linkContainer.appendChild(createWhitespace())
+    linkContainer.appendChild(createLink(
+        "Answers list", "form-list", privateGuid));
+    messageContainer.replaceChildren(messageTextNode, linkContainer);
 }
 
 function convertFormDataToJson(form) {
     var formData = new FormData(form);
     var obj = {};
-    formData.forEach((value, key) => obj[key] = value);
+    var questions = [];
+    formData.forEach((value, key) => {
+        if (key.startsWith("question"))
+            questions.push(value);
+        obj[key] = value
+    });
     return {
-        hasQuestions: Object.keys(obj).length > 2,
+        hasQuestions: questions.length > 0,
+        hasDuplicates: hasDuplicates(questions),
         json: JSON.stringify(obj), 
     };
 }
@@ -83,7 +99,11 @@ function submitForm(event) {
 
     var result = convertFormDataToJson(event.target); 
     if (!result.hasQuestions) {
-        emplaceNoQuestionsMessage();
+        showMessage("You cannot create a form without questions.");
+        return;
+    }
+    if (result.hasDuplicates) {
+        showMessage("There cannot be any identical questions.");
         return;
     }
 
@@ -102,7 +122,8 @@ function submitForm(event) {
         (error) => console.error(error)
     )
     .then(
-        (data) => emplaceLinkToCreatedForm(data.guid)
+        (data) => emplaceLinkToCreatedForm(
+            data.public_guid, data.private_guid)
     );
 
     console.log('Sending request ...');

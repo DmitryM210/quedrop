@@ -5,7 +5,7 @@ quedrop
 {% endblock %}
 
 {% block content %}
-<div id="message-container" class = "success" style="visibility: h;">
+<div id="message-container" class = "success" style="visibility: hidden;">
 	
 </div>
 <form id="editable-form" action="post" method="POST" autocomplete="off">

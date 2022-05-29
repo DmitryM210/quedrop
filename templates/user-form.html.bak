@@ -20,7 +20,7 @@ quedrop
 					</div>
 				</div>
 			{% endfor %}
-			<input type="submit" value="Submit" class="button button1"/>
+			<input type="submit" value="Submit" class="button"/>
 			<!-- <button type="submit" class="button"> <h3>DROP YOUR ANSWERS<h3> </button> -->
 		</form>
     {% else %}
