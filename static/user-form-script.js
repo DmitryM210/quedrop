@@ -50,9 +50,13 @@ function submitAnswer(event) {
         (error) => console.error(error)
     )
     .then(
-        (data) => console.log(data)
+        (data) => {
+            console.log(data);
+            alert("You have succsessfully sent your answers to the server!");
+            window.location.replace(window.location.origin);
+        }
     );
-
+    
     console.log('Sending request ...');
 }
 

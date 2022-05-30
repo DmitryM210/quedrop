@@ -3,7 +3,15 @@
 quedrop
 {% endblock %}
 {% block content %}
-    {% if answer and answer.status == 'Checking' %}
+	{% if not answer %}
+		<div class="start">
+			<h1> This answer list could not be found </h1>
+		</div>
+	{% elif has_permission == false %}
+		<div class="start">
+			<h1> This answers list is unavailable for checking </h1>
+		</div>
+    {% elif answer and answer.status == 'Checking' and has_permission == true %}
         <div class="start">
 			<h1 id="title">{{ answer.title }} {{answer.status}}</h1>
 			<p id="description">{{ answer.description }}</p>
@@ -28,12 +36,10 @@ quedrop
 			{% endfor %}
 			<input type="submit" value="Check answers"/>
 		</form>
-    {% else %}
-		{% if answer.status != 'Checking' %}
-        <span> This answers list is unavailable for checking. </span>
-		{% else %}
-        <span> This answer list could not be found. </span>
-		{% endif %}
+	{% else %}
+		<div class="start">
+			<h1> This answers list is unavailable for checking </h1>
+		</div>
 	{% endif %}
 {% endblock %}
 

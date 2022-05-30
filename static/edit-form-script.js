@@ -60,14 +60,14 @@ function appendNewQuestion() {
 
 function showMessage(message) {
     var messageContainer = document.getElementById("message-container");
-	messageContainer.removeAttribute("style");
+	messageContainer.style.display = "block";
     var messageTextNode = document.createTextNode(message);
     messageContainer.replaceChildren(messageTextNode);
 }
 
 function emplaceLinkToCreatedForm(publicGuid, privateGuid) {
     var messageContainer = document.getElementById("message-container");
-	messageContainer.removeAttribute("style");
+	messageContainer.style.display = "block";
     var message = "You have successfully created a new form: ";
     var messageTextNode = document.createTextNode(message);
     var linkContainer = document.createElement("div");

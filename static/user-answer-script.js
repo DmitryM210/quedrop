@@ -1,14 +1,16 @@
+var urlParameters = window.location.pathname.split("/");
+var privateGuid = urlParameters[urlParameters.length - 2];
+
 function isEmptyOrWhitespace(str){
     return str === null || str.match(/^ *$/) !== null;
 }
 
 function convertFormDataToJson(form) {
     var formData = new FormData(form);
-    var urlParameters = window.location.pathname.split("/");
     var obj = {};
 
-    obj['private_guid'] = urlParameters[urlParameters.length - 2];
-    console.log( urlParameters[urlParameters.length - 2]);
+    obj['private_guid'] = privateGuid;
+    //console.log(urlParameters[urlParameters.length - 2]);
     obj['title'] = document.getElementById('title').innerText;
     obj['description'] = document.getElementById('description').innerText;
     
@@ -50,9 +52,12 @@ function submitCheck(event) {
         (error) => console.error(error)
     )
     .then(
-        (data) => console.log(data)
+        (data) => {
+            console.log(data);
+            window.location.replace(window.location.origin + "/form-list/" + privateGuid);
+        }
     );
-
+    
     console.log('Sending request ...');
 }
 
