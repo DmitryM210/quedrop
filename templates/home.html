@@ -8,8 +8,12 @@ quedrop
 <h2> With the help of this service, you can create polls or answer already created ones. Ideal for classroom use. </h2>
 <div class="container">
 	<a href = "{{ url_for('edit_form') }}" class = "button" >  <div class = "button-text"><p>CREATE</p> <p>FORM</p></div></a>
-	<a href = "{{ url_for('user_form') }}" class = "button" >  <div class = "button-text"><p>START</p> <p>TO</p> <p>ANSWER</p> </div></a>
+	<a href = "{{ url_for('user_form') }}" class = "button" onclick="return startAnswerClick(event)" >  <div class = "button-text"><p>START</p> <p>TO</p> <p>ANSWER</p> </div></a>
 </div>
-<input type = "text" placeholder = "Enter your uuid" class = "input_uuid"> 
+<input id="uuid-input" type = "text" placeholder = "Enter your uuid" class = "input_uuid"> 
 
+{% endblock %}
+
+{% block body_scripts %}
+<script src="{{url_for('static', filename='home-page-script.js')}}"></script>
 {% endblock %}
