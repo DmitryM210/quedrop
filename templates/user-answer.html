@@ -21,11 +21,10 @@ quedrop
 			{% for index in range(answer.questions_count) %}
 				<div class = q_a> 
 					<div class = "question">
-						<p> QUESTION {{ index+1 }} </p>
-						<h3 id="question_{{index}}"> {{ answer.questions[index].text }} </h3>
+						<p id="question_{{index}}"> {{ answer.questions[index].text }} </p>
 					</div>
 					<div class ="answer">
-                        <p id="answer_{{index}}">{{ answer.questions[index].answer }}</p>
+						<p id="answer_{{index}}"> Answer: {{ answer.questions[index].answer }}</p>
 					</div>
                     <div class="check">
                         <input type="checkbox" id="is_correct_{{index}}" 
@@ -34,7 +33,7 @@ quedrop
                     </div>
 				</div>
 			{% endfor %}
-			<input type="submit" value="Check answers"/>
+			<input type="submit" value="Check answers" class="button button1"/>
 		</form>
 	{% else %}
 		<div class="start">

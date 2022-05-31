@@ -20,6 +20,17 @@
 	text-align: center;
 }
 
+#title {
+	margin-top: 25px;
+	margin-bottom: 3px;
+}
+#description{
+	margin-top: 0px;
+	margin-bottom: 40px;
+	font-family: Monotype Corsiva;
+	font-size: 23px;
+}
+
 .navbar a {
     text-decoration: none;
     color: inherit;
@@ -53,7 +64,6 @@
                 0 5px 5px #0004;
     padding: 60px;
 	width: 600px;
-    height: 30px;
     margin: 20px;
 	margin-left: auto;
     margin-right: auto;
@@ -78,7 +88,7 @@
 }
 
 .answer {
-	
+	font-size: 20px;
 }
 
 /* .body-content { */
@@ -144,7 +154,7 @@
 	margin-left: auto;
     margin-right: auto;
     margin-top: 105px;
-	margin-bottom: 55px;
+	margin-bottom: 31px;
 }
 
 .beauty_board h1 {
@@ -235,4 +245,9 @@ table, th, td {
     margin-right: auto;
 	width:80%;
 	padding:10px;
+	margin-bottom:18px;
+}
+
+.check{
+	margin-bottom: -18px;
 }

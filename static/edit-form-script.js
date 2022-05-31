@@ -76,6 +76,9 @@ function emplaceLinkToCreatedForm(publicGuid, privateGuid) {
     linkContainer.appendChild(createWhitespace())
     linkContainer.appendChild(createLink(
         "Answers list", "form-list", privateGuid));
+	var guidContainer = document.createElement("p");
+	guidContainer.innerHTML = "Student's uuid: " + publicGuid;
+	linkContainer.appendChild(guidContainer)
     messageContainer.replaceChildren(messageTextNode, linkContainer);
 }
 

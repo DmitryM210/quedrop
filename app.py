@@ -33,11 +33,14 @@ def user_answer(private_guid, index):
     if private_guid not in answers_dict:
         return render_template("user-answer.html", answer=None, has_permission=False)
     answer = answers_dict[private_guid][index]
-    if answer.status == "Unchecked" and checking_session_token not in checking_sessions:
-        checking_sessions[checking_session_token] = index
+    if answer.status == "Unchecked":
+        if checking_session_token not in checking_sessions:
+            checking_sessions[checking_session_token] = [index]
+        else:
+            checking_sessions[checking_session_token].append(index)
         answer.start_checking()
     if (checking_session_token in checking_sessions and 
-        index == checking_sessions[checking_session_token]):
+        index in checking_sessions[checking_session_token]):
         return render_template("user-answer.html", answer=answer, has_permission=True)
     else:
         return render_template("user-answer.html", answer=answer, has_permission=False)
