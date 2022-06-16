@@ -6,22 +6,19 @@
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css')}}" />
     </head>
 
-    <body>
-        <div class="navbar-in">
-            <a href="{{ url_for('home') }}" class="navbar-brand">Quedrop</a>
-            <a href="{{ url_for('edit_form') }}" class="navbar-item">Edit Form</a>
-            <a href="{{ url_for('user_form') }}" class="navbar-item">User Form</a>
-        </div>
-
-        <div class="body-content">
-            {% block content %}
-            {% endblock %}
-            <hr/>
-            <footer>
-                <p>© 2022</p>
-            </footer>
-        </div>
-
+    <body bgcolor = #90EE90 background = "https://free-png.ru/wp-content/uploads/2022/02/free-png.ru-381.png">
+        <div>
+			<div class="body-content">
+				<div class = "beauty_board">
+					{% block content %}
+					{% endblock %}
+				</div>
+				<hr/>
+				<footer>
+					<p>2022 © DimArt Studio</p>
+				</footer>
+			</div>
+		</div>
         {% block body_scripts %}
         {% endblock %}
     </body>

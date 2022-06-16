@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block title %}
+quedrop
+{% endblock %}
+{% block content %}
+	{% if not answer %}
+		<div class="start">
+			<h1> This answer list could not be found </h1>
+		</div>
+	{% elif has_permission == false %}
+		<div class="start">
+			<h1> This answers list is unavailable for checking </h1>
+		</div>
+    {% elif answer and answer.status == 'Checking' and has_permission == true %}
+        <div class="start">
+			<h1 id="title">{{ answer.title }} {{answer.status}}</h1>
+			<p id="description">{{ answer.description }}</p>
+			<h2> QUESTIONS: </h2>
+		</div>
+		<form id="check-form" action="post" method="POST" autocomplete="off">
+			{% for index in range(answer.questions_count) %}
+				<div class = q_a> 
+					<div class = "question">
+						<p id="question_{{index}}"> {{ answer.questions[index].text }} </p>
+					</div>
+					<div class ="answer">
+						<p id="answer_{{index}}"> Answer: {{ answer.questions[index].answer }}</p>
+					</div>
+                    <div class="check">
+                        <input type="checkbox" id="is_correct_{{index}}" 
+							name="is_correct_{{index}}" data-question="question_{{index}}" data-answer="answer_{{index}}"/>
+                        <label for="is_correct_{{index}}">Correct</label>
+                    </div>
+				</div>
+			{% endfor %}
+			<input type="submit" value="Check answers" class="button button1"/>
+		</form>
+	{% else %}
+		<div class="start">
+			<h1> This answers list is unavailable for checking </h1>
+		</div>
+	{% endif %}
+{% endblock %}
+
+{% block body_scripts %}
+<script src="{{url_for('static', filename='user-answer-script.js')}}"></script>
+{% endblock %}

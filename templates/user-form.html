@@ -5,24 +5,31 @@ quedrop
 {% block content %}
     {%if form %}
         <div class="start">
-			<h1> TEST: {{ form.get_title() }} </h1>
+			<h1 id="title">{{ form.title }}</h1>
+			<p id="description">{{ form.description }}</p>
 			<h2> QUESTIONS: </h2>
 		</div>
-		{% for index in range(form.questions_count) %}
-			<div class = q_a> 
-				<div class = "question">
-					<p> QUESTION {{ index+1 }} </p>
-					<h3> {{ form.get_questions()[index].get_text() }} </h3>
+		<form id="answer-form" action="post" method="POST" autocomplete="off">
+			{% for index in range(form.questions_count) %}
+				<div class = q_a> 
+					<div class = "question">
+						<p id="question_{{index}}"> {{ index+1 }}. {{ form.questions[index].text }} </p>
+					</div>
+					<div class ="answer">
+						<input type="text" name="question_{{index}}" placeholder="Your answer.."  required>
+					</div>
 				</div>
-				<div class ="answer">
-					<span> YOUR ANSWER: <input type="text" name="username"> </span>
-				</div>
-			</div>
-		{% endfor %}
-		<button class = "button"> <h3>DROP YOUR ANSWERS<h3> </button>
+			{% endfor %}
+			<input type="submit" value="Submit" class="button button1"/>
+			<!-- <button type="submit" class="button"> <h3>DROP YOUR ANSWERS<h3> </button> -->
+		</form>
     {% else %}
-        <span> dunno </span>
+		<div class="start">
+			<h1> Form cannot be found </h1>
+		</div>
     {% endif %}
-	
-	<p>User form page for the Visual Studio Code Flask tutorial.</p>
+{% endblock %}
+
+{% block body_scripts %}
+<script src="{{url_for('static', filename='user-form-script.js')}}"></script>
 {% endblock %}

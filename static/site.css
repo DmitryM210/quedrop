@@ -20,6 +20,17 @@
 	text-align: center;
 }
 
+#title {
+	margin-top: 25px;
+	margin-bottom: 3px;
+}
+#description{
+	margin-top: 0px;
+	margin-bottom: 40px;
+	font-family: Monotype Corsiva;
+	font-size: 23px;
+}
+
 .navbar a {
     text-decoration: none;
     color: inherit;
@@ -45,54 +56,198 @@
 }
 
 .q_a {
-	background-color: #fff;
+	background-color: #90EE90;
     font-size: 1em;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    border-radius: 20px;
-    box-shadow: inset 0 0 0 3px #00ff2a, 
+    border-radius: 10px;
+    box-shadow: inset 0 0 0 3px #18992B, 
                 0 5px 5px #0004;
     padding: 60px;
 	width: 600px;
-    height: 30px;
     margin: 20px;
 	margin-left: auto;
     margin-right: auto;
 }
+
+.answer input {
+	font-size: 22px;
+	border: none;
+	border-bottom: 2px solid #18992B;
+	background-color: #90EE90;
+	width: 100%;
+}
+
 .question {
-	
     margin-top: -50px;
-
-
 }
+
+.question p{
+	margin-bottom:15px;
+	margin-top:30px;
+	font-size:32px;
+}
+
 .answer {
-	
+	font-size: 20px;
 }
 
-.body-content {
-    padding: 5px;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+/* .body-content { */
+    /* padding: 5px; */
+    /* font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+/* } */
 
 .button {
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
-	width: 700px;
-    height: 60px;
-	border-radius: 10px;
-	position: relative; 
-	left: 50%;
-	margin-left: -350px;
-	margin-bottom: 50px;
-	
+	border-radius: 40px;
+	position: relative;
+	color: #556B2F;
+	border-style: solid;
+	border-color: #556B2F;
+	border-width: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #4CAF50;
 }
 
 .button:hover {
     background-color: #4CAF50; /* Green */
     color: white;
-	width: 700px;
-    height: 60px;
-	border-radius: 20px;
-	position: relative; 
-	left: 50%;
-	margin-left: -350px;
+    border-radius: 50px;
+    position: relative;
+}
+
+.button-text{
+	text-align: center;
+	line-height: 8px;
+	font-weight: 900;
+	font-size: 40px;
+	font-family: Trebuchet MS;
+ 
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 3em;
+  box-sizing: border-box;
+  padding-bottom: 20px;
+}
+
+.container a {
+  width: 5em;
+  height: 2em;
+  background-color: #4CAF50;
+  width: 300px;
+  height: 300px;
+  text-decoration: none;
+}
+
+.beauty_board{
+	background-color: #74BA50;
+	border-width: 5px;
+	border-style: ridge;
+	border-color: #18992B;
+	width: 800px;
+    min-height: 555px;
+	margin-left: auto;
+    margin-right: auto;
+    margin-top: 105px;
+	margin-bottom: 31px;
+}
+
+.beauty_board h1 {
+  	text-align: center;
+	font-family: Monotype Corsiva;
+	font-size: 50px;
+	text-decoration: none;
+	color: black;
+}
+
+.beauty_board h2 {
+  	text-align: center;
+	font-family: Monotype Corsiva;
+	font-size: 20.5px;
+	color: #363636;
+	margin: -10px;
+}
+
+.beauty_board a {
+  	text-decoration: none;
+}
+
+.input_uuid {
+	background-color: #90EE90;	
+	margin-left: 477px;
+	margin-bottom: 20px;
+	font-size: 20px;
+}
+
+table {
+    width: 100%
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+.start_edit{
+	text-align: center;
+	padding-top:10px;
+}
+
+.start_edit input {
+	font-size: 30px;
+	border: none;
+	border-bottom: 2px solid #18992B;
+	background-color: #90EE90;
+}
+
+.question_answer{
+	text-align: center;
+	padding-top:10px;
+}
+
+.question_answer input {
+	font-size: 22px;
+	border: none;
+	border-bottom: 2px solid #18992B;
+	background-color: #90EE90;
+}
+
+#message-container {
+	display: none;
+}
+
+.success{
+	text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+	font-size: 25px;
+	border: solid 4px #18992B;
+	width: 60%;
+	margin-top:10px;
+	padding: 4px;
+	background-color: #2ee879;
+	border-style: double;
+}
+
+.edit-question input[type=text] {
+	font-size: 25px;
+	width: 80%;
+}
+
+.button1{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+	width:80%;
+	padding:10px;
+	margin-bottom:18px;
+}
+
+.check{
+	margin-bottom: -18px;
 }

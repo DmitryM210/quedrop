@@ -127,3 +127,33 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Intellij Idea
+.idea/
+
+# Visual Studio 2015/2017 cache/options directory
+.vs/
+
+# Others
+*_i.c
+*_p.c
+*.ilk
+*.meta
+*.exe
+*.obj
+*.pch
+#*.pdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp_proj
+*.log
+.builds
+*.pidb
+*.vcxproj.filters
+*.bak

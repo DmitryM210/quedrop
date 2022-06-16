@@ -5,23 +5,30 @@ quedrop
 {% endblock %}
 
 {% block content %}
-<div id="message-container">
-
+<div id="message-container" class="success">
+	
 </div>
-<form id="editable-form" action="post" method="POST">
-    <input name="title" type="text" placeholder="Title" required/>
-    <input name="description" type="text" placeholder="Description"/>
+<form id="editable-form" action="post" method="POST" autocomplete="off">
+    <div class = "start_edit">
+		<input name="title" type="text" placeholder="Title" required/>
+	</div>
+	<div class = "start_edit">
+		<input name="description" type="text" placeholder="Description"/>
+	</div>
+    
     <div id="question-section">
         <!-- <div class="edit-question">
             <input type="text" placeholder="Question ..." required/>
             <input type="text" placeholder="Answer ..." readonly/>
         </div> -->
     </div>
-    <button type="button" onclick="appendNewQuestion()">Add question</button>
-    <input type="submit" value="Create form"/>
+    <div class="question_answer">
+		<input type="button" value="Add question" onclick="appendNewQuestion()"/>
+		<input type="submit" value="Create form"/>
+	</div>
 </form>
 {% endblock %}
 
 {% block body_scripts %}
-<script src="{{url_for('static', filename='body-script.js')}}"></script>
+<script src="{{url_for('static', filename='edit-form-script.js')}}"></script>
 {% endblock %}
